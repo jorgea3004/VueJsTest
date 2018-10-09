@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title>Proyecto Vue Js</title>
+</head>
+<body>
+	<app>
+		<h2 v-text="texto"></h2>
+	</app>
+	<hr>
+	<main>
+
+		<!-- Componente dinamico -->
+		<component :is="elegido"></component>
+		<button @click="elegido='peliculas'">Cargar Pelicula</button>
+		<button @click="elegido='padre'">Cargar padre</button>
+		<button @click="elegido='hijo'">Cargar hijo</button>
+		<hr>
+		<frutas :objeto="superfruta"></frutas>
+		<hr>
+		<padre></padre>
+		<hr>
+		<peliculas></peliculas>
+		<hr>
+		<h1> {{ texto }} </h1>
+		<h2 v-text="texto"></h2>
+
+		<input type='text' v-model='nombre'>
+		<h3> {{ nombre }} </h3>
+
+		<hr>
+		<h2>nombreYapellidos: {{nombreYapellidos}}</h2>
+		<hr>
+		<h2>Eventos</h2>
+		<h2>Listado de Peliculas (array)</h2>
+		<ol>
+			<li v-for="(pelicula,index) in peliculas">{{pelicula}} <button @click="borrarPelicula(index)">Borrar Pelicula</button></li>
+		</ol>
+		<form @submit.prevent="crearPelicula()">
+			<input type='text' v-model='peliculaNueva'>
+			<input type="submit" value="Guardar Peli">
+		</form>
+
+		<hr>
+		<button v-on:click="crearPelicula()">Crear Pelicula</button>
+		<button @click="borrarPelicula()">Borrar Pelicula</button>
+		<hr>
+
+
+		<strong v-if="nota && nota>=5" v-text="">Tu nota es mayor a 5 !!!!</strong>
+		<span v-else>Has suspendido</span>
+
+		<hr>
+
+		<h2>Listado de Peliculas (array)</h2>
+		<ol>
+			<li v-for="pelicula in peliculas">{{pelicula}}</li>
+		</ol>
+
+		<hr>
+		<h2>Listado de Frutas (array de objetos)</h2>
+		<ul>
+			<li v-for="(fruta,index) in frutas">
+				{{index}} : {{fruta.nombre}} - {{fruta.temporada}}
+			</li>
+		</ul>
+
+		<hr>
+		<h2>Listado de Super Fruta (objeto)</h2>
+		<ul>
+			<li v-for="(value, key, index) in superfruta">
+				{{index}} : {{key}} - {{value}}
+			</li>
+		</ul>
+
+		<hr>
+		<h2>Busqueda</h2>
+		<input type='search' v-model='busqueda' placeholder="Buscar Fruta">
+		<ul>
+			<li v-for="(fruta,index) in buscarFruta">
+				{{fruta.nombre}}
+			</li>
+		</ul>
+
+		
+	</main>
+<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
